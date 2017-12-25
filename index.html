@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jquery mvvm</title>
+  <script src="pubsub/javascript/lib.js"></script>
+  <script src="pubsub/javascript/user.js"></script>
+</head>
+<body>
+  <input type="text" data-bind-123="name" />
+  <p data-bind-123="name"></p>   
+  <script>
+    window.onload = function(){
+      var user = new User(123);
+      var timeout = 1111;
+      user.set("name",timeout);
+      setInterval(function(){
+        console.log(user.get('name'));
+      },1000)
+    }
+  </script>
+</body>
+</html>
