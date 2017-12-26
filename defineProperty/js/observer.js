@@ -4,7 +4,7 @@ function Observer(data) {
 }
 
 Observer.prototype = {
-    walk: function(data) {
+    walk: function(data) {   //遍历
         var me = this;
         Object.keys(data).forEach(function(key) {
             me.convert(key, data[key]);
@@ -22,7 +22,7 @@ Observer.prototype = {
             enumerable: true, // 可枚举
             configurable: false, // 不能再define
             get: function() {
-                if (Dep.target) {
+                if (Dep.target) {      //？？？
                     dep.depend();
                 }
                 return val;
@@ -74,6 +74,7 @@ Dep.prototype = {
     },
 
     notify: function() {
+
         this.subs.forEach(function(sub) {
             sub.update();
         });

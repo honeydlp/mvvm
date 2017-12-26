@@ -46,14 +46,17 @@ Watcher.prototype = {
         }
     },
     get: function() {
+        console.log(this);
         Dep.target = this;
         var value = this.getter.call(this.vm, this.vm);
+        console.log('get==='+value);
         Dep.target = null;
         return value;
     },
 
     parseGetter: function(exp) {
-        if (/[^\w.$]/.test(exp)) return; 
+        // 参数是v-xx = 'abc' 中的 'abc'  
+        if (/[^\w.$]/.test(exp)) return;  //正则匹配的是英文
 
         var exps = exp.split('.');
 

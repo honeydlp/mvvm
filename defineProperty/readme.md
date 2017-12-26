@@ -4,7 +4,6 @@
 > 1、了解vue的双向数据绑定原理以及核心代码模块<br>
 > 2、缓解好奇心的同时了解如何实现双向绑定<br>
 > 为了便于说明原理与实现，本文相关代码主要摘自[vue源码](https://github.com/vuejs/vue), 并进行了简化改造，相对较简陋，并未考虑到数组的处理、数据的循环依赖等，也难免存在一些问题，欢迎大家指正。不过这些并不会影响大家的阅读和理解，相信看完本文后对大家在阅读vue源码的时候会更有帮助<br>
-> 本文所有相关代码均在github上面可找到 [https://github.com/DMQ/mvvm](https://github.com/DMQ/mvvm)
 
 ##### 相信大家对mvvm双向绑定应该都不陌生了，一言不合上代码，下面先看一个本文最终实现的效果吧，和vue一样的语法，如果还不了解双向绑定，猛戳[Google](https://www.google.com.hk/search?q=%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A)
 
@@ -22,14 +21,14 @@
 <script>
 var vm = new MVVM({
     el: '#mvvm-app',
-        data: {
-            word: 'Hello World!'
-        },
-        methods: {
-            sayHi: function() {
-                this.word = 'Hi, everybody!';
-            }
+    data: {
+        word: 'Hello World!'
+    },
+    methods: {
+        sayHi: function() {
+            this.word = 'Hi, everybody!';
         }
+    }
     });
 </script>
 ```
