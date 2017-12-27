@@ -52,7 +52,7 @@ function observe(value, vm) {
 
 var uid = 0;
 
-function Dep() {
+function Dep() {      //通知变化中间件，observer和watch桥梁
     this.id = uid++;
     this.subs = [];
 }

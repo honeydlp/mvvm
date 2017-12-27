@@ -1,4 +1,4 @@
-function Watcher(vm, expOrFn, cb) {
+function Watcher(vm, expOrFn, cb) { //mvvm,属性的值，回调函数
     this.cb = cb;
     this.vm = vm;
     this.expOrFn = expOrFn;
@@ -46,10 +46,8 @@ Watcher.prototype = {
         }
     },
     get: function() {
-        console.log(this);
         Dep.target = this;
         var value = this.getter.call(this.vm, this.vm);
-        console.log('get==='+value);
         Dep.target = null;
         return value;
     },

@@ -1,5 +1,5 @@
 function Compile(el, vm) {
-    this.$vm = vm;
+    this.$vm = vm;  //mvvm对象
     this.$el = this.isElementNode(el) ? el : document.querySelector(el);
 
     if (this.$el) {
@@ -29,7 +29,7 @@ Compile.prototype = {
     compileElement: function(el) {
         var childNodes = el.childNodes,
             me = this;
-
+            
         [].slice.call(childNodes).forEach(function(node) {
             var text = node.textContent;
             var reg = /\{\{(.*)\}\}/;
@@ -52,12 +52,13 @@ Compile.prototype = {
             me = this;
 
         [].slice.call(nodeAttrs).forEach(function(attr) {
-            var attrName = attr.name;
+            var attrName = attr.name; //href = 'http://www.baidu.com';
             if (me.isDirective(attrName)) {
                 var exp = attr.value;
                 var dir = attrName.substring(2);
-                // 事件指令
-                if (me.isEventDirective(dir)) {
+
+                if (me.isEventDirective(dir)) {  // 事件指令
+                    // 指令集合处理
                     compileUtil.eventHandler(node, me.$vm, exp, dir);
                     // 普通指令
                 } else {
@@ -132,7 +133,7 @@ var compileUtil = {
     },
 
     // 事件处理
-    eventHandler: function(node, vm, exp, dir) {
+    eventHandler: function(node, vm, exp, dir) {  //exp是属性的值，dir是属性建，去除v-
         var eventType = dir.split(':')[1],
             fn = vm.$options.methods && vm.$options.methods[exp];
 
@@ -147,6 +148,7 @@ var compileUtil = {
         exp.forEach(function(k) {
             val = val[k];
         });
+        //console.log(val);
         return val;
     },
 
